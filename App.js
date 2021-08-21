@@ -14,12 +14,22 @@ export default function App({ target, initialState }) {
     const toDoList = new ToDoList({
       target,
       initialState,
+      onToDo: (toDoItem) => {
+        const { index } = toDoItem.dataset;
+        const updateState = [...toDoList.state];
+
+        updateState[index].isCompleted = !updateState[index].isCompleted;
+
+        toDoList.setState(updateState);
+
+        setItem('todos', JSON.stringify(updateState));
+      },
     });
 
     new ToDoForm({
       target,
       onSubmit: (task) => {
-        const updateState = [...toDoList.state, { task }];
+        const updateState = [...toDoList.state, { task, isCompleted: false }];
 
         toDoList.setState(updateState);
 

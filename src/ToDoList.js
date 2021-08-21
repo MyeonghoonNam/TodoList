@@ -1,5 +1,6 @@
-export default function ToDoList({ target, initialState }) {
+export default function ToDoList({ target, initialState, onToDo, onRemove }) {
   const toDoList = document.createElement('div');
+  let isInit = false;
 
   target.appendChild(toDoList);
 
@@ -11,9 +12,36 @@ export default function ToDoList({ target, initialState }) {
   };
 
   this.render = () => {
-    toDoList.innerHTML = `
+    toDoList.innerHTML = makeList();
+
+    toDoList.querySelector('ul').addEventListener('click', (e) => {
+      const clickButton = e.target;
+      const toDoItem = clickButton.closest('li');
+
+      if (clickButton.className === 'toDoButton') {
+        onToDo(toDoItem);
+      } else {
+        console.log('deletebutton');
+      }
+    });
+  };
+
+  const makeList = () => {
+    return `
       <ul>
-        ${this.state.map(({ task }) => `<li>${task}</li>`).join('')}
+        ${this.state
+          .map(
+            ({ task, isCompleted }, index) => `
+              <li data-index=${index}>
+                <span class="todo${
+                  isCompleted ? ' isCompleted' : ''
+                }">${task}</span>
+                <button class="toDoButton" type="button">ToDo</button>
+                <button class="deleteButton" type="button">x</button>
+              </li>             
+            `
+          )
+          .join('')}
       </ul>
     `;
   };
