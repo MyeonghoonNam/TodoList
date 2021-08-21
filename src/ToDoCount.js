@@ -5,15 +5,26 @@ export default function ToDoCount({ target, initialState }) {
 
   this.state = initialState;
 
-  this.setState = (updateState) => {};
+  this.setState = (updateState) => {
+    this.state = updateState;
+    this.render();
+  };
 
   this.render = () => {
-    calculateToDoCount();
-    // const [completedToDoCount, totalToDoCount] = calculateToDoCount();
+    const [completedToDoCount, totalToDoCount] = calculateToDoCount();
+
+    toDoCountBox.innerText = `
+      CompletedToDoCount : ${completedToDoCount} / ${totalToDoCount}
+    `;
   };
 
   const calculateToDoCount = () => {
-    console.log(this.state);
+    const totalToDoCount = this.state.length;
+    const completedToDoCount = this.state.filter(
+      ({ isCompleted }) => isCompleted
+    ).length;
+
+    return [completedToDoCount, totalToDoCount];
   };
 
   this.render();

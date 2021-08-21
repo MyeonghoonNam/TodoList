@@ -23,6 +23,7 @@ export default function App({ target, initialState }) {
           !updateState[parseInt(index)].isCompleted;
 
         toDoList.setState(updateState);
+        toDoCount.setState(updateState);
 
         setItem('todos', JSON.stringify(updateState));
       },
@@ -33,6 +34,7 @@ export default function App({ target, initialState }) {
         updateState.splice(index, 1);
 
         toDoList.setState(updateState);
+        toDoCount.setState(updateState);
 
         setItem('todos', JSON.stringify(updateState));
       },
@@ -49,7 +51,7 @@ export default function App({ target, initialState }) {
       },
     });
 
-    new ToDoCount({
+    const toDoCount = new ToDoCount({
       target,
       initialState,
     });
