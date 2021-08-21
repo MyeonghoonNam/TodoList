@@ -1,6 +1,7 @@
 import Header from './src/Header.js';
 import ToDoList from './src/ToDoList.js';
 import ToDoForm from './src/ToDoForm.js';
+import ToDoCount from './src/ToDoCount.js';
 import { setItem } from './src/Storage.js';
 
 export default function App({ target, initialState }) {
@@ -47,7 +48,12 @@ export default function App({ target, initialState }) {
         setItem('todos', JSON.stringify(updateState));
       },
     });
+
+    new ToDoCount({
+      target,
+      initialState,
+    });
   } catch (e) {
-    alert(e.message);
+    alert(e);
   }
 }
