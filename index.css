@@ -4,7 +4,17 @@
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
   margin: 0;
+  background-color: #e3e8fe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ----------------------------------------------------------------- */
+
+main {
+  border: solid 1px black;
+}
