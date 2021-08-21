@@ -21,7 +21,7 @@ export default function ToDoList({ target, initialState, onToDo, onRemove }) {
       if (clickButton.className === 'toDoButton') {
         onToDo(toDoItem);
       } else {
-        console.log('deletebutton');
+        onRemove(toDoItem);
       }
     });
   };
@@ -33,7 +33,7 @@ export default function ToDoList({ target, initialState, onToDo, onRemove }) {
           .map(
             ({ task, isCompleted }, index) => `
               <li data-index=${index}>
-                <span class="todo${
+                <span class="toDo${
                   isCompleted ? ' isCompleted' : ''
                 }">${task}</span>
                 <button class="toDoButton" type="button">ToDo</button>

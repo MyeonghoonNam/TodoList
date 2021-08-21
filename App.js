@@ -18,7 +18,18 @@ export default function App({ target, initialState }) {
         const { index } = toDoItem.dataset;
         const updateState = [...toDoList.state];
 
-        updateState[index].isCompleted = !updateState[index].isCompleted;
+        updateState[parseInt(index)].isCompleted =
+          !updateState[parseInt(index)].isCompleted;
+
+        toDoList.setState(updateState);
+
+        setItem('todos', JSON.stringify(updateState));
+      },
+      onRemove: (toDoItem) => {
+        const { index } = toDoItem.dataset;
+        const updateState = [...toDoList.state];
+
+        updateState.splice(index, 1);
 
         toDoList.setState(updateState);
 
