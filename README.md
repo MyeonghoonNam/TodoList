@@ -1,6 +1,8 @@
 # 📌 3주차 과제[Mission3]
 
-![SimpleToDoList](https://user-images.githubusercontent.com/57757719/131164005-90748391-781d-4d99-92aa-81c19f0b5c34.gif)
+<p align="center">
+	<img src="https://user-images.githubusercontent.com/57757719/131164005-90748391-781d-4d99-92aa-81c19f0b5c34.gif"/>
+</p>
 
 <br>
 
@@ -25,7 +27,7 @@
 ### TodoList
 - [x] To do의 값에 isCompleted라는 값을 추가합니다. 그리고 TodoList의 Todo를 클릭하면 해당 값이 토글 되도록 만듭니다.
   - isCompleted가 true인 경우 text에 삭선이 그어지도록 해주세요. false로 바뀌면 삭선을 없애주세요.
-  
+
 - [x] Todo text 옆에 삭제 button을 만듭니다. 누르면 삭제 되도록 처리합니다.
 
 <br>
