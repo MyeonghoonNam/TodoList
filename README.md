@@ -1,7 +1,7 @@
 # 📌 3주차 과제[Mission3]
 
 <p align="center">
-	<img src="https://user-images.githubusercontent.com/57757719/131164005-90748391-781d-4d99-92aa-81c19f0b5c34.gif"/>
+	<img src="https://user-images.githubusercontent.com/57757719/131164005-90748391-781d-4d99-92aa-81c19f0b5c34.gif" width="100%"/>
 </p>
 
 <br>
