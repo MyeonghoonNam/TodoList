@@ -10,8 +10,6 @@ export default function ToDoForm({ target, onSubmit }) {
     target.appendChild(footer);
     footer.appendChild(form);
   
-    let isInit = false;
-  
     this.render = () => {
       form.innerHTML = `
         <input class="footer__input" type="text" name="todoText" placeholder="Add to List..."
@@ -21,19 +19,17 @@ export default function ToDoForm({ target, onSubmit }) {
         </button>
       `;
   
-      if (!isInit) {
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-  
-          const input = form.querySelector('input[name=todoText]');
-          const text = input.value;
-  
-          if (text.length > 1) {
-            input.value = '';
-            onSubmit(text);
-          }
-        });
-      }
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const input = form.querySelector('input[name=todoText]');
+        const text = input.value;
+
+        if (text.length > 1) {
+          input.value = '';
+          onSubmit(text);
+        }
+      });
     };
   
     this.render();
