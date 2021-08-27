@@ -1,61 +1,65 @@
 import Header from './src/Header.js';
-import ToDoList from './src/ToDoList.js';
 import ToDoForm from './src/ToDoForm.js';
+import ToDoList from './src/ToDoList.js';
 import ToDoCount from './src/ToDoCount.js';
 import { setItem } from './src/Storage.js';
 
 export default function App({ target, initialState }) {
   try {
+    if (!new.target) {
+      throw new Error('경고 : App 컴포넌트를 new로 생성해주세요 !');
+    }
+
     new Header({
       target,
-      text: 'Simple ToDoList !',
+      text: 'Simple ToDoList',
       icon: '<i class="fas fa-list-ul"></i>',
     });
 
-    const toDoList = new ToDoList({
+    const todoList = new ToDoList({
       target,
       initialState,
       onToDo: (toDoItem) => {
         const { index } = toDoItem.dataset;
-        const updateState = [...toDoList.state];
+        const updateState = todoList.state;
 
-        updateState[parseInt(index)].isCompleted =
-          !updateState[parseInt(index)].isCompleted;
+        updateState[index].isCompleted = !updateState[index].isCompleted;
 
-        toDoList.setState(updateState);
-        toDoCount.setState(updateState);
+        todoList.setState(updateState);
+        todoCount.setState(updateState);
 
         setItem('todos', JSON.stringify(updateState));
       },
       onRemove: (toDoItem) => {
         const { index } = toDoItem.dataset;
-        const updateState = [...toDoList.state];
+        const updateState = [...todoList.state];
 
         updateState.splice(index, 1);
 
-        toDoList.setState(updateState);
-        toDoCount.setState(updateState);
+        todoList.setState(updateState);
+        todoCount.setState(updateState);
 
         setItem('todos', JSON.stringify(updateState));
       },
+    });
+
+    const todoCount = new ToDoCount({
+      target,
+      initialState,
     });
 
     new ToDoForm({
       target,
-      onSubmit: (task) => {
-        const updateState = [...toDoList.state, { task, isCompleted: false }];
+      onSubmit: (text) => {
+        const updateState = [...todoList.state, { text, isCompleted: false }];
 
-        toDoList.setState(updateState);
+        todoList.setState(updateState);
+        todoCount.setState(updateState);
 
         setItem('todos', JSON.stringify(updateState));
       },
     });
-
-    const toDoCount = new ToDoCount({
-      target,
-      initialState,
-    });
   } catch (e) {
-    alert(e);
+    alert(e.message);
   }
 }

@@ -1,10 +1,14 @@
-import { getItem } from './src/Storage.js';
 import App from './App.js';
+import { getItem } from './src/storage.js';
 
-const target = document.querySelector('#app');
+const app = document.querySelector('#app');
 const initialState = getItem('todos', []);
 
-new App({
-  target,
-  initialState,
-});
+try {
+  new App({
+    target: app,
+    initialState,
+  });
+} catch (e) {
+  alert(e);
+}

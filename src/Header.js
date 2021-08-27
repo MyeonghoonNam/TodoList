@@ -1,15 +1,20 @@
 export default function Header({ target, text, icon }) {
-  const header = document.createElement('div');
-  header.setAttribute('class', 'header');
+  try {
+    if (!new.target) {
+      throw new Error('경고 : header 컴포넌트를 new로 생성해주세요 !');
+    }
 
-  target.appendChild(header);
+    const header = document.createElement('header');
+    header.setAttribute('class', 'header');
 
-  this.render = () => {
-    header.innerHTML = `
-      ${icon}
-      ${text}
-    `;
-  };
+    target.appendChild(header);
 
-  this.render();
+    this.render = () => {
+      header.innerHTML = `${icon}${text}`;
+    };
+
+    this.render();
+  } catch (e) {
+    alert(e.message);
+  }
 }
