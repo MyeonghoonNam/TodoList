@@ -38,7 +38,7 @@ export default function ToDoList({ target, initialState, onToDo, onRemove }) {
       return `
         <ul class="todos">
           ${this.state
-            .sort((a, b) => a.isCompleted - b.isCompleted)
+            .sort((a, b) => a.isCompleted - b.isCompleted) // Todo 우선순위 적용을 통한 상단 위치시키기
             .map(
               ({ text, isCompleted }, index) => `
             <li class="todo__row" data-index="${index}">
